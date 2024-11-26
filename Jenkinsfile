@@ -1,15 +1,12 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_REPO = 'avi9800/webapp'
-    }
     stages {
         stage ('Build') {
             steps {
                 sh '''
-                tag="$BUILD_NUMBER_$GIT_BRANCH"
-                docker build -t $DOCKER_REPO:$tag . --no-cache
-                docker rmi $DOCKER_REPO:$tag --force
+                docker login --username avi9800 --password Nidhikhan412@
+                docker build -t avi9800/webapp:$BUILD_NUMBER_$GIT_BRANCH . --no-cache
+                docker rmi avi9800/webapp:$BUILD_NUMBER_$GIT_BRANCH --force
                 '''
             }
         }
