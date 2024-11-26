@@ -6,7 +6,8 @@ pipeline {
             steps {
                 sh '''
                 echo $GIT_BRANCH
-                docker build -t $full_name .
+                fullname="webapp_$GIT_BRANCH"
+                docker build -t $fullname .
                 docker images 
                 '''
             }
