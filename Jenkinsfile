@@ -7,7 +7,7 @@ pipeline {
                 sh '''
                 echo $GIT_BRANCH
                 fullname="webapp_$GIT_BRANCH"
-                docker build -t $fullname .
+                docker build -t $fullname . --no-cache
                 docker images 
                 '''
             }
