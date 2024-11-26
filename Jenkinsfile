@@ -9,6 +9,7 @@ pipeline {
                 sh '''
                 tag="$BUILD_NUMBER_$GIT_BRANCH"
                 docker build -t $DOCKER_REPO:$tag . --no-cache
+                docker rmi $DOCKER_REPO:$tag --force
                 '''
             }
         }
