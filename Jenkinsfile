@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                sh 'docker --version'
+                sh '''
+                echo $GIT_BRANCH|awk -F '/' '{print $2}'
+                '''
             }
         }
     }
