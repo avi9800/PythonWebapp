@@ -1,14 +1,14 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_REPO = 'avi9800/webapp'
+    }
     stages {
         stage ('Build') {
             steps {
                 sh '''
-                echo $GIT_BRANCH
-                fullname="webapp_$GIT_BRANCH"
-                docker build -t $fullname:$BUILD_NUMBER . --no-cache
-                docker images 
+                tag="$BUILD_NUMBER_$GIT_BRANCH"
+                docker build -t $DOCKER_REPO:$tag . --no-cache
                 '''
             }
         }
